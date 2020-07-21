@@ -1,0 +1,25 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "node": "^14.5.0",
+    "nodemon": "^2.0.4",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azarateo/nodeUdemyAndrewMead.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azarateo/nodeUdemyAndrewMead/issues"
+  },
+  "homepage": "https://github.com/azarateo/nodeUdemyAndrewMead#readme"
+}
