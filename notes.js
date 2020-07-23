@@ -1,12 +1,13 @@
 const fs = require('fs');
+const chalk = require('chalk');
 
 const addNote = function (title, body) {
     console.log('Adding note with title ' + title + ' and body' + body);
     const notes = loadNotes()
-    const duplicates = notes.filter(function(note){
+    const notesToKeep = notes.filter(function(note){
         return note.title === title
     })
-    if (duplicates.length === 0) {
+    if (notesToKeep.length === 0) {
         const newNote = {
             title: title,
             body: body
@@ -15,7 +16,7 @@ const addNote = function (title, body) {
         saveNotes(notes)
     }
     else{
-        console.log('Title already taken!')
+        console.log(chalk.red('Title already taken!'))
     }
     
 }
@@ -37,16 +38,16 @@ const loadNotes = function () {
 const removeNote = function (title) {
     console.log('Removing note with title ' + title)
     const notes = loadNotes()
-    const duplicates = notes.filter(note =>{
+    const notesToKeep = notes.filter(note =>{
         return note.title != title
     })
-    if (duplicates.length === notes.length) {
-        console.log('Title not found!')
+    if (notesToKeep.length === notes.length) {
+        console.log(chalk.red('Title not found!'))
     }
     else{
-        console.log('Note with title '+ title+' removed')
+        console.log(chalk.green('Note with title '+ title+' removed'))
     }
-    saveNotes(duplicates)
+    saveNotes(notesToKeep)
 
 }
 
