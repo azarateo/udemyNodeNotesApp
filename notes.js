@@ -4,8 +4,8 @@ const chalk = require('chalk');
 const addNote = (title, body) => {
     console.log('Adding note with title ' + title + ' and body' + body);
     const notes = loadNotes()
-    const notesToKeep = notes.filter((note) => note.title === title)
-    if (notesToKeep.length === 0) {
+    const duplicateNote = notes.find((note) => note.title === title)
+    if (!duplicateNote) {
         const newNote = {
             title: title,
             body: body
@@ -49,7 +49,14 @@ const removeNote = (title) => {
 }
 
 const readNote = (title) => {
-    console.log('Reading note with title ' + title)
+    const notes = loadNotes()
+    note = notes.find((note)=>note.title === title)
+    if(note) {
+        console.log(chalk.bold.blue(note.title))
+        console.log(chalk.blue(note.body))
+    }else{
+        console.log(chalk.red.inverse('Note not found'))
+    }
 }
 
 const listNotes = () => {
