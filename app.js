@@ -8,10 +8,16 @@ yargs.command({
             describe: 'Note title',
             required: true,
             type: 'string'
+        },
+        body: {
+            describe: 'Note body',
+            required: true,
+            type: 'string'
         }
     },
     handler: function(argv){
         console.log('Title:'+ argv.title)
+        console.log('Body:'+ argv.body)
     }
 })
 yargs.command({
