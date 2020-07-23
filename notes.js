@@ -1,12 +1,10 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-const addNote = function (title, body) {
+const addNote = (title, body) => {
     console.log('Adding note with title ' + title + ' and body' + body);
     const notes = loadNotes()
-    const notesToKeep = notes.filter(function(note){
-        return note.title === title
-    })
+    const notesToKeep = notes.filter((note) => note.title === title)
     if (notesToKeep.length === 0) {
         const newNote = {
             title: title,
@@ -14,19 +12,20 @@ const addNote = function (title, body) {
         }
         notes.push(newNote)
         saveNotes(notes)
+        console.log(chalk.green.inverse('Note added successfully'))
     }
-    else{
-        console.log(chalk.red('Title already taken!'))
+    else {
+        console.log(chalk.red.inverse('Title already taken!'))
     }
-    
+
 }
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
     notesJSON = JSON.stringify(notes)
     fs.writeFileSync('notes.json', notesJSON)
 }
 
-const loadNotes = function () {
+const loadNotes = () => {
     try {
         const notes = JSON.parse(fs.readFileSync('./notes.json'))
         return notes
@@ -35,29 +34,28 @@ const loadNotes = function () {
     }
 }
 
-const removeNote = function (title) {
+const removeNote = (title) => {
     console.log('Removing note with title ' + title)
     const notes = loadNotes()
-    const notesToKeep = notes.filter(note =>{
-        return note.title != title
-    })
+    const notesToKeep = notes.filter(note => note.title != title)
     if (notesToKeep.length === notes.length) {
-        console.log(chalk.red('Title not found!'))
+        console.log(chalk.red.inverse('Title not found!'))
     }
-    else{
-        console.log(chalk.green('Note with title '+ title+' removed'))
+    else {
+        console.log(chalk.green.inverse('Note with title ' + title + ' removed'))
     }
     saveNotes(notesToKeep)
 
 }
 
-const readNote = function (title) {
+const readNote = (title) => {
     console.log('Reading note with title ' + title)
 }
 
-const listNotes = function () {
+const listNotes = () => {
     console.log('Listing all notes')
 }
+
 
 module.exports = {
     addNote: addNote,
