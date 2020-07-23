@@ -3,8 +3,15 @@ yargs.version('1.1.1')
 yargs.command({
     command: 'add',
     describe: 'Add a note',
-    handler: function(){
-        console.log('Adding a note')
+    builder:{
+        title: {
+            describe: 'Note title',
+            required: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv){
+        console.log('Adding a note',argv)
     }
 })
 yargs.command({
@@ -23,10 +30,10 @@ yargs.command({
 })
 yargs.command(
     {
-       command: 'list nodes',
+       command: 'list',
        describe: 'List all nodes',
        handler: function(){
-           console.log('Listing all nodes in the repository')
+           console.log('Listing all nodes.')
        }
     }
 )
